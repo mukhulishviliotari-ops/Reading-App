@@ -10,6 +10,14 @@ dateElement.textContent = new Date().toLocaleDateString("en-US", {
 });
 
 window.addEventListener('DOMContentLoaded', () => {
+    const savedName = localStorage.getItem('userName');
+
+    if (savedName) {
+        UserName.textContent = savedName;
+        overlay.style.display = 'none';
+        return;
+    }
+
     nameInput.focus();
 });
 
@@ -20,6 +28,7 @@ nameInput.addEventListener('keydown', (event) => {
         if (userName !== '') {
             // Put the typed name into <h1 class="name"></h1>
             UserName.textContent = userName;
+            localStorage.setItem('userName', userName);
 
             overlay.classList.add('hidden');
             
